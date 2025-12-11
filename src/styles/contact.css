@@ -1,0 +1,112 @@
+/* Contact Page Main Wrapper */
+.contact-wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 80px;
+    background-color: #f3ddcf;
+}
+
+/* Contact Us Heading */
+.contact-heading {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 80px;
+    color: #ff6a00; /* ORANGE HEADING */
+}
+
+/* Contact Section Background */
+.contact {
+    margin: 0px auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+   
+    color: #fff6e9;
+    border-radius: 12px;
+}
+
+/* Left & Right Column */
+.contact-col {
+    flex-basis: 48%;
+    color: #2c2c2c;
+}
+
+/* Align text + icon SAME LINE */
+.contact-col ul {
+    padding-left: 0;
+    margin: 0;
+}
+
+.contact-col ul li {
+    display: flex;
+    align-items: flex-start;
+    margin: 15px 0;
+    list-style: none;
+    font-size: 20px;
+}
+
+/* Icon beside text */
+.contact-col ul li img {
+    width: 25px;
+    margin-right: 10px;
+    margin-top: 3px; /* perfect vertical alignment */
+}
+
+/* Heading inside left column */
+.contact-col h3 {
+    color: #000f38;
+    font-weight: 500;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+.contact-col p{
+    color: #000f38;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.contact-col h3 img {
+    width: 35px;
+    margin-left: 10px;
+}
+
+/* Form Inputs */
+.contact form input,
+.contact form textarea {
+    width: 100%;
+    background: #ebe3d8;
+    padding: 15px;
+    outline: none;
+    border: none;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    resize: none;
+    border-radius: 6px;
+    border: 1px solid orange;
+}
+
+/* Result message */
+.contact-col span {
+    display: block;
+    margin: 20px 0;
+}
+.dark-btn{
+  border-radius: 20px;
+  padding: 8px;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(252, 164, 0);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .contact {
+        display: block;
+        padding: 30px;
+    }
+    .contact-col {
+        padding: 10px 0;
+    }
+}

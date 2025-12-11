@@ -1,0 +1,107 @@
+/* checkout.css */
+
+/* Overlay for modal */
+.checkout-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6); /* semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal container */
+.checkout-modal {
+  background: #fff6e9;
+  padding: 20px;
+  width: 95%;
+  max-width: 700px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Header */
+.checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ee5527;
+  padding-bottom: 10px;
+}
+
+/* Close (X) button */
+.close-btn {
+  background: orange; /* orange background */
+  color: white;       /* white text */
+  border: none;
+  font-size: 18px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background: darkorange; /* darker on hover */
+}
+
+/* Checkout form */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.checkout-form h2 {
+  margin: 15px 0 10px;
+  color: #333;
+}
+
+/* Input fields */
+.checkout-form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Card Element container */
+.card-element {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Place order button */
+.place-order-btn {
+  padding: 12px 20px;
+  background: #ee5527;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.place-order-btn:hover {
+  background: #cc4620;
+}
+
+/* Payment message */
+.payment-message {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}

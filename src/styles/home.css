@@ -1,0 +1,57 @@
+.home-hero {
+  height: 100vh;
+  width: 100%;
+  background-image: url("../assets/homes.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;  /* center */
+  color: black;
+}
+
+
+
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.shop-btn {
+  padding: 12px 25px;
+  font-size: 18px;
+  background-color: rgb(248, 103, 46);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.shop-btn:hover {
+  background-color: #ffd4d8;
+}

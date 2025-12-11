@@ -1,0 +1,105 @@
+.navbar {
+  width: 100%;
+  height: 70px;
+  background: rgb(245, 123, 75);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px; /* reduce padding */
+  box-sizing: border-box; /* prevent overflow */
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  flex-wrap: wrap; /* allow wrapping if screen is small */
+ 
+  overflow-x: hidden;
+
+
+ 
+
+}
+.cart-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* wrap links instead of overflowing */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color:white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffd4d8;
+}
+.cart-link {
+  position: relative;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.admin-btn {
+
+  background-color: #0e0b07; /* Orange shade */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.admin-btn:hover {
+  background-color: #e67e22; /* Lighter orange on hover */
+  transform: scale(1.05);
+}
+
+.admin-btn:active {
+  background-color: #c0392b; /* Darker red-orange on click */
+  transform: scale(0.95);
+}
+
+.admin-btn:focus {
+  outline: none;
+  box-shadow: 0 0 5px #d35400;
+}
