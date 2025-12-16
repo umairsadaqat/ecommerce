@@ -1,4 +1,6 @@
-/* Contact Page Main Wrapper */
+/* =========================
+   Contact Page Main Wrapper
+========================= */
 .contact-wrapper {
     max-width: 90%;
     margin: 0 auto;
@@ -12,19 +14,18 @@
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 80px;
-    color: #ff6a00; /* ORANGE HEADING */
+    color: #ff6a00; /* Orange Heading */
 }
 
 /* Contact Section Background */
 .contact {
-    margin: 0px auto;
+    margin: 0 auto;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    
-   
     color: #fff6e9;
     border-radius: 12px;
+    gap: 30px; /* space between columns */
 }
 
 /* Left & Right Column */
@@ -33,7 +34,7 @@
     color: #2c2c2c;
 }
 
-/* Align text + icon SAME LINE */
+/* Align text + icon on same line */
 .contact-col ul {
     padding-left: 0;
     margin: 0;
@@ -51,7 +52,7 @@
 .contact-col ul li img {
     width: 25px;
     margin-right: 10px;
-    margin-top: 3px; /* perfect vertical alignment */
+    margin-top: 3px;
 }
 
 /* Heading inside left column */
@@ -61,12 +62,14 @@
     font-size: 35px;
     margin-bottom: 20px;
 }
-.contact-col p{
+
+.contact-col p {
     color: #000f38;
     font-weight: 500;
     font-size: 20px;
     margin-bottom: 20px;
 }
+
 .contact-col h3 img {
     width: 35px;
     margin-left: 10px;
@@ -79,12 +82,11 @@
     background: #ebe3d8;
     padding: 15px;
     outline: none;
-    border: none;
+    border: 1px solid orange;
     margin-bottom: 15px;
     margin-top: 5px;
     resize: none;
     border-radius: 6px;
-    border: 1px solid orange;
 }
 
 /* Result message */
@@ -92,21 +94,125 @@
     display: block;
     margin: 20px 0;
 }
-.dark-btn{
-  border-radius: 20px;
-  padding: 8px;
-  font-size: 20px;
-  color: white;
-  background-color: rgb(252, 164, 0);
+
+.dark-btn {
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(252, 164, 0);
+    cursor: pointer;
+    border: none;
 }
 
-/* Responsive */
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 1024px) {
+    .contact {
+        gap: 20px;
+    }
+
+    .contact-col h3 {
+        font-size: 30px;
+    }
+
+    .contact-col p {
+        font-size: 18px;
+    }
+
+    .contact-col ul li {
+        font-size: 18px;
+    }
+
+    .contact form input,
+    .contact form textarea {
+        padding: 12px;
+    }
+
+    .dark-btn {
+        font-size: 18px;
+        padding: 6px 16px;
+    }
+}
+
 @media (max-width: 700px) {
     .contact {
         display: block;
-        padding: 30px;
+        padding: 10px;
     }
+    .contact-heading {
+        font-size: 35px;
+        margin-bottom: 2px;
+    }
+
     .contact-col {
+        width: 100%;
         padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-heading {
+        font-size: 32px;
+        margin-bottom: 2px;
+    }
+
+    .contact-col h3 {
+        font-size: 26px;
+    }
+
+    .contact-col p {
+        font-size: 16px;
+    }
+
+    .contact-col ul li {
+        font-size: 16px;
+    }
+
+    .contact form input,
+    .contact form textarea {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .dark-btn {
+        font-size: 16px;
+        padding: 5px 12px;
+    }
+}
+
+@media (max-width: 350px) {
+    .contact-wrapper {
+        padding: 20px 15px;
+    }
+
+    .contact-heading {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .contact-col h3 {
+        font-size: 22px;
+    }
+
+    .contact-col p {
+        font-size: 14px;
+    }
+
+    .contact-col ul li {
+        font-size: 14px;
+        gap: 8px;
+    }
+
+    .contact form input,
+    .contact form textarea {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .dark-btn {
+        font-size: 14px;
+        padding: 4px 10px;
     }
 }

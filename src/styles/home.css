@@ -10,22 +10,19 @@
   align-items: center;
   color: white;
   text-align: center;
-  
   position: relative;
   overflow-x: hidden;
+  padding: 0 20px; /* optional padding for small screens */
 }
-
 
 .hero-text {
   position: relative;
   z-index: 1;
   max-width: 800px;
-  margin: 0 auto;  /* center */
+  width: 100%;
+  margin: 0 auto;  
   color: black;
 }
-
-
-
 
 .hero-text h1 {
   font-size: 48px;
@@ -54,4 +51,90 @@
 
 .shop-btn:hover {
   background-color: #ffd4d8;
+}
+
+/* ========================
+   Responsive Media Queries
+========================= */
+@media (max-width: 1024px) {
+  .hero-text h1 {
+    font-size: 40px;
+  }
+
+  .hero-text p {
+    font-size: 18px;
+  }
+
+  .home-hero {
+     background-size: cover;
+    background-position: center top;
+    height: auto; /* allow content to fit on small screens */
+    padding: 180px 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 32px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+  }
+
+  .shop-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .home-hero {
+     background-size: cover;
+    background-position: center top;
+    height: auto; /* allow content to fit on small screens */
+    padding: 100px 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 26px;
+  }
+
+  .hero-text p {
+    font-size: 14px;
+  }
+
+  .shop-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .home-hero {
+    background-size: cover;
+    background-position: center top;
+    height: auto; /* allow content to fit on small screens */
+    padding: 80px 0px;
+  }
+}
+
+@media (max-width: 350px) {
+  .hero-text h1 {
+    font-size: 22px;
+  }
+
+  .hero-text p {
+    font-size: 13px;
+  }
+
+  .shop-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .home-hero {
+     background-size: cover;
+    background-position: center top;
+    height: auto; /* allow content to fit on small screens */
+    padding: 50px 0px;
+  }
 }

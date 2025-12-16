@@ -1,8 +1,8 @@
-
-.About{
+.About {
   background: #fff6e9;
-  padding: 80px;
+  padding: 80px 40px; /* reduce side padding for smaller screens */
 }
+
 .about-title {
   text-align: center;
   font-size: 42px;
@@ -10,7 +10,6 @@
   margin-bottom: 20px;
   color: rgb(255, 81, 0);
   font-weight: bold;
- 
 }
 
 .about-container {
@@ -18,8 +17,7 @@
   align-items: center;
   justify-content: center;
   gap: 50px;
-  padding: 60px 40px;      /* reduced padding to avoid overflow */
-
+  padding: 60px 40px;
   flex-wrap: wrap;
 }
 
@@ -51,20 +49,111 @@
 
 .about-right img {
   width: 100%;
-  max-width: 550px;        /* bigger image */
+  max-width: 550px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 1024px) {
+  .about-container {
+    gap: 30px;
+    padding: 40px 30px;
+  }
+
+  .about-left h2 {
+    font-size: 28px;
+  }
+
+  .about-left p {
+    font-size: 18px;
+  }
+
+  .about-right img {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
   .about-container {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px 20px;
+  }
+
+  .about-left h2 {
+    font-size: 26px;
+  }
+
+  .about-left p {
+    font-size: 16px;
   }
 
   .about-right img {
     max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 32px;
+    margin-top: 30px;
+  }
+
+  .about-left h2 {
+    font-size: 22px;
+  }
+
+  .about-left p {
+    font-size: 15px;
+  }
+
+  .about-container {
+    padding: 20px 15px;
+  }
+
+  .about-right img {
+    max-width: 100%;
+  }
+}
+
+/* =========================
+   Extra small screens ≤350px
+========================= */
+@media (max-width: 350px) {
+  .about-title {
+    font-size: 28px;
+    margin-top: 20px;
+  }
+
+  .about-left {
+    max-width: 350px;
+    padding: 0 10px;
+  }
+
+  .about-left h2 {
+    font-size: 20px;
+  }
+
+  .about-left p {
+    font-size: 14px;
+  }
+
+  .about-right {
+    max-width: 350px;
+    padding: 0 10px;
+  }
+
+  .about-right img {
+    max-width: 50%;
+    height: auto;
+    margin: 20px;
+  }
+
+  .about-container {
+    padding: 5px 2px;
+    gap: 20px;
   }
 }

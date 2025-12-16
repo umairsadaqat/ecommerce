@@ -1,8 +1,13 @@
+import { useState } from "react";
 import "../styles/navbar.css";
 import logo from "../assets/home.png";
 import cartIcon from "../assets/cart.png";
 
 export default function Navbar({ cartCount, onCartClick, onAdminClick }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -10,17 +15,20 @@ export default function Navbar({ cartCount, onCartClick, onAdminClick }) {
         <span className="logo-text">Tapal Chai</span>
       </div>
 
-      <ul className="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#contact">Contact</a></li>
+      {/* Hamburger Menu */}
+      <div className="menu-toggle" onClick={toggleMenu}>
+        {menuOpen ? <span className="close">&times;</span> : <span className="hamburger">&#9776;</span>}
+      </div>
 
-        {/* Admin Login */}
+      {/* Navigation Links */}
+      <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+        <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
+        <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>
+        <li><a href="#products" onClick={() => setMenuOpen(false)}>Products</a></li>
+        <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
         <li>
-          <button className="admin-btn" onClick={onAdminClick}>Admin</button>
+          <button className="admin-btn" onClick={() => { onAdminClick(); setMenuOpen(false); }}>Admin</button>
         </li>
-
         <li>
           <button className="cart-link" onClick={onCartClick}>
             <img src={cartIcon} alt="Cart" className="cart-icon" />

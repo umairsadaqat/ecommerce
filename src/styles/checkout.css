@@ -105,3 +105,45 @@
   font-weight: bold;
   text-align: center;
 }
+/* =========================
+   Checkout Modal Responsive (≤1024px)
+========================= */
+@media screen and (max-width: 1024px) {
+  .checkout-modal {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .checkout-form h2 {
+    font-size: 20px;
+  }
+
+  .checkout-form input {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .checkout-form label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .card-element {
+    padding: 10px 0;
+  }
+
+  .place-order-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .checkout-header h1 {
+    font-size: 24px;
+  }
+
+  .payment-message {
+    font-size: 16px;
+  }
+}

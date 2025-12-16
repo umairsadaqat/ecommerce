@@ -183,51 +183,127 @@
 /* ======================
    Product List
 ====================== */
-.product-list {
+.product-list1 {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* slightly bigger cards */
-  gap: 65px; /* increase spacing between cards */
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px; /* smaller gap works better */
+  margin-top: 70px;
+  padding: 0 10px; /* optional, prevent touching edges */
 }
 
-.product-card {
-  background: white;
-  padding: 20px; /* more padding inside card */
+
+.product-card1 {
+  background: rgb(252, 251, 251);
+  padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* spread elements evenly */
+  justify-content: flex-start; /* keep content aligned top */
 }
 
-.product-card .product-image {
-  width: 100%;
-  height: 120px; /* taller image */
-  object-fit: cover;
-  margin-bottom: 12px; /* more spacing below image */
+.product-card1 .product-image {
+ width: 100%;          /* fit card width */
+  height: 150px;        /* uniform image height */
+  object-fit: cover;    /* crop to fill card nicely */
   border-radius: 8px;
+  margin-bottom: 12px;
 }
 
-.product-card p {
+
+.product-card1 p {
   margin: 6px 0; /* spacing between name and price */
 }
+/* ======================
+   Edit Inputs Style
+====================== */
+.product-card1 input[type="text"],
+.product-card1 input[type="number"] {
+  width: 100%; /* full width inside product card */
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.3s;
+  box-sizing: border-box;
+  text-align: center;
+}
 
-.delete-btn {
-  margin-top: 12px; /* space from price */
-  padding: 8px 16px;
-  background: #c0392b;
-  color: white;
+.product-card1 input[type="text"]:focus,
+.product-card1 input[type="number"]:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+  background-color: #fefefe;
+}
+
+/* Edit action row */
+.product-card1 .action-row.editing {
+  justify-content: center; /* center Save and Cancel buttons */
+  margin-top: 5px;
+}
+
+
+/* ======================
+   FORCE BUTTON COLORS
+====================== */
+.product-card1 .action-row {
+  display: flex;
+  gap: 10px; /* <-- THIS WORKS */
+  margin-top: 10px;
+}
+
+.product-card1 .action-row button {
   border: none;
+  padding: 8px 15px;
   border-radius: 6px;
   cursor: pointer;
-  transition: 0.3s;
+  font-weight: 600;
+  gap: 10px;
+  
 }
 
-.delete-btn:hover {
-  background: #e74c3c;
+/* EDIT - GREEN */
+.product-card1 .edit-btn {
+  background-color: #27ae60 !important;
+  color: white !important;
 }
+
+/* DELETE - RED */
+.product-card1 .delete-btn {
+  background-color: #c0392b !important;
+  color: white !important;
+}
+
+/* SAVE - BLUE */
+.product-card1 .save-btn {
+  background-color: #2980b9 !important;
+  color: white !important;
+}
+
+/* CANCEL - RED */
+.product-card1 .cancel-btn {
+  background-color: #e74c3c !important;
+  color: white !important;
+}
+
+/* Hover Effects */
+.product-card1 .edit-btn:hover {
+  background-color: #2ecc71 !important;
+}
+
+.product-card1 .save-btn:hover {
+  background-color: #3498db !important;
+}
+
+.product-card1 .delete-btn:hover,
+.product-card1 .cancel-btn:hover {
+  background-color: #ff4d4d !important;
+}
+
 
 /* ======================
    Responsive

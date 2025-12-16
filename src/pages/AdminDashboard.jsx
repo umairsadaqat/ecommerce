@@ -24,6 +24,13 @@ export default function AdminDashboard({ onLogout }) {
     setOrders(updatedOrders);
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
   };
+  // Update product
+  const updateProduct = (index, updatedProduct) => {
+    const updatedProducts = [...products];
+    updatedProducts[index] = updatedProduct;
+    setProducts(updatedProducts);
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
+  };
 
   // Add product
   const addProduct = (product) => {
@@ -49,7 +56,11 @@ export default function AdminDashboard({ onLogout }) {
           <OrdersSection orders={orders} updateStatus={updateStatus} />
         )}
         {activeSection === "products" && (
-          <ProductsSection products={products} addProduct={addProduct} deleteProduct={deleteProduct} />
+          <ProductsSection
+            products={products}
+            addProduct={addProduct}
+            deleteProduct={deleteProduct}
+            updateProduct={updateProduct}/>
         )}
       </main>
     </div>

@@ -6,21 +6,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px; /* reduce padding */
-  box-sizing: border-box; /* prevent overflow */
+  padding: 0 20px;
+  box-sizing: border-box;
   box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-  flex-wrap: wrap; /* allow wrapping if screen is small */
- 
-  overflow-x: hidden;
-
-
- 
-
-}
-.cart-icon {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
+  position: relative;
 }
 
 .navbar-left {
@@ -40,31 +29,40 @@
   font-weight: bold;
 }
 
+/* Navigation Links */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 20px;
-  flex-wrap: wrap; /* wrap links instead of overflowing */
-  margin: 0;
-  padding: 0;
+  align-items: center;
 }
 
-.nav-links a {
-  color:white;
+.nav-links li a{
+  color: white;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.nav-links a:hover {
+.nav-links li a:hover {
   color: #ffd4d8;
 }
+
+/* Cart */
 .cart-link {
   position: relative;
   border: none;
   background: none;
   cursor: pointer;
+}
+
+.cart-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .cart-badge {
@@ -78,28 +76,58 @@
   font-size: 12px;
   font-weight: bold;
 }
-.admin-btn {
 
-  background-color: #0e0b07; /* Orange shade */
+/* Admin Button */
+.admin-btn {
+  background-color: #0e0b07;
   color: #fff;
   border: none;
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  padding: 5px 10px;
+  transition: 0.3s;
 }
 
 .admin-btn:hover {
-  background-color: #e67e22; /* Lighter orange on hover */
-  transform: scale(1.05);
+  background-color: #e67e22;
 }
 
-.admin-btn:active {
-  background-color: #c0392b; /* Darker red-orange on click */
-  transform: scale(0.95);
+/* Hamburger Toggle (Mobile) */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
 }
 
-.admin-btn:focus {
-  outline: none;
-  box-shadow: 0 0 5px #d35400;
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    background: rgb(245, 123, 75);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    display: none;
+    gap: 15px;
+    z-index: 1000;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  /* Move cart inside menu */
+  .cart-link {
+    margin-top: 10px;
+  }
 }
