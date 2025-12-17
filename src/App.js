@@ -33,27 +33,36 @@ export default function App() {
   // ======================
   const handleAddToCart = (product) => {
     const existingIndex = cartItems.findIndex((item) => item.id === product.id);
+
     if (existingIndex >= 0) {
+      // Product exists, increase quantity
       const newCart = [...cartItems];
       newCart[existingIndex].quantity += 1;
       setCartItems(newCart);
     } else {
+      // Add new product
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
+
     alert(`${product.name} added to cart!`);
   };
 
   // ======================
   // UPDATE CART QUANTITY
   // ======================
-  const updateQuantity = (index, delta) => {
-    const newCart = [...cartItems];
-    newCart[index].quantity += delta;
-    if (newCart[index].quantity <= 0) {
-      newCart.splice(index, 1);
-    }
+  const updateQuantity = (productId, delta) => {
+    const newCart = cartItems
+      .map(item =>
+        item.id === productId ? { ...item, quantity: item.quantity + delta } : item
+      )
+      .filter(item => item.quantity > 0); // remove if quantity <= 0
     setCartItems(newCart);
   };
+
+  // ======================
+  // CALCULATE TOTAL QUANTITY
+  // ======================
+  const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   // ======================
   // ADMIN LOGIN CLICKED
@@ -65,7 +74,6 @@ export default function App() {
   // ======================
   // RENDER
   // ======================
-  // 1️⃣ Show Admin Login form only
   if (showAdminLogin && !isAdminLoggedIn) {
     return (
       <Admin
@@ -77,20 +85,14 @@ export default function App() {
     );
   }
 
-  // 2️⃣ Show Admin Dashboard only
   if (isAdminLoggedIn) {
-    return (
-      <AdminDashboard
-        onLogout={() => setIsAdminLoggedIn(false)}
-      />
-    );
+    return <AdminDashboard onLogout={() => setIsAdminLoggedIn(false)} />;
   }
 
-  // 3️⃣ Normal user view
   return (
     <>
       <Navbar
-        cartCount={cartItems.length}
+        cartCount={totalCartCount}
         onCartClick={() => setShowCart(true)}
         onAdminClick={handleAdminClick}
       />
@@ -100,10 +102,10 @@ export default function App() {
       <Products onAddToCart={handleAddToCart} />
       <Contact />
       <Footer />
-            {/* Mobile Cart Button */}
-      <CartButton cartCount={cartItems.length} onClick={() => setShowCart(true)} />
-          <WhatsAppButton /> {/* ✅ This will appear on all pages */}
 
+      {/* Mobile Cart Button */}
+      <CartButton cartCount={totalCartCount} onClick={() => setShowCart(true)} />
+      <WhatsAppButton /> {/* ✅ Show on all pages */}
 
       {showCart && (
         <Cart
@@ -118,10 +120,7 @@ export default function App() {
       )}
 
       {showCheckout && (
-        <Checkout
-          cartItems={cartItems}
-          onCancel={() => setShowCheckout(false)}
-        />
+        <Checkout cartItems={cartItems} onCancel={() => setShowCheckout(false)} />
       )}
     </>
   );
