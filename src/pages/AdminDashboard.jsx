@@ -8,59 +8,73 @@ export default function AdminDashboard({ onLogout }) {
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
   const [activeSection, setActiveSection] = useState("orders");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
-    setOrders(savedOrders);
-
-    const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
-    setProducts(savedProducts);
+    setOrders(JSON.parse(localStorage.getItem("orders")) || []);
+    setProducts(JSON.parse(localStorage.getItem("products")) || []);
   }, []);
 
-  // Update order status
+  // Order status
   const updateStatus = (index, newStatus) => {
-    const updatedOrders = [...orders];
-    updatedOrders[index].status = newStatus;
-    setOrders(updatedOrders);
-    localStorage.setItem("orders", JSON.stringify(updatedOrders));
-  };
-  // Update product
-  const updateProduct = (index, updatedProduct) => {
-    const updatedProducts = [...products];
-    updatedProducts[index] = updatedProduct;
-    setProducts(updatedProducts);
-    localStorage.setItem("products", JSON.stringify(updatedProducts));
+    const updated = [...orders];
+    updated[index].status = newStatus;
+    setOrders(updated);
+    localStorage.setItem("orders", JSON.stringify(updated));
   };
 
-  // Add product
+  // Product handlers
+  const updateProduct = (index, product) => {
+    const updated = [...products];
+    updated[index] = product;
+    setProducts(updated);
+    localStorage.setItem("products", JSON.stringify(updated));
+  };
+
   const addProduct = (product) => {
-    const newProducts = [...products, product];
-    setProducts(newProducts);
-    localStorage.setItem("products", JSON.stringify(newProducts));
+    const updated = [...products, product];
+    setProducts(updated);
+    localStorage.setItem("products", JSON.stringify(updated));
   };
 
-  // Delete product
   const deleteProduct = (index) => {
-    const newProducts = [...products];
-    newProducts.splice(index, 1);
-    setProducts(newProducts);
-    localStorage.setItem("products", JSON.stringify(newProducts));
+    const updated = [...products];
+    updated.splice(index, 1);
+    setProducts(updated);
+    localStorage.setItem("products", JSON.stringify(updated));
   };
 
   return (
     <div className="admin-dashboard-container">
-      <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} onLogout={onLogout} />
+
+      {/* 🔥 SINGLE TOGGLE BUTTON */}
+      <button
+        className={`menu-toggle ${menuOpen ? "open" : ""}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? "✖" : "☰"}
+      </button>
+
+      <Sidebar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        onLogout={onLogout}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+      />
 
       <main className="admin-content">
         {activeSection === "orders" && (
           <OrdersSection orders={orders} updateStatus={updateStatus} />
         )}
+
         {activeSection === "products" && (
           <ProductsSection
             products={products}
             addProduct={addProduct}
             deleteProduct={deleteProduct}
-            updateProduct={updateProduct}/>
+            updateProduct={updateProduct}
+          />
         )}
       </main>
     </div>

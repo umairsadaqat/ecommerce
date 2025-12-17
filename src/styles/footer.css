@@ -96,7 +96,7 @@
 @media(max-width: 768px) {
   .footer-container {
     display: block;
-    text-align: center;
+    text-align: start;
   }
 
   .footer-left,
@@ -107,6 +107,6 @@
   }
 
   .contact-item {
-    justify-content: center;
+    justify-content: start;
   }
 }

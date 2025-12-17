@@ -15,12 +15,12 @@ export default function Navbar({ cartCount, onCartClick, onAdminClick }) {
         <span className="logo-text">Tapal Chai</span>
       </div>
 
-      {/* Hamburger Menu */}
-      <div className="menu-toggle" onClick={toggleMenu}>
-        {menuOpen ? <span className="close">&times;</span> : <span className="hamburger">&#9776;</span>}
-      </div>
+      {/* Hamburger Toggle */}
+      <button className="menu-toggle1" onClick={toggleMenu}>
+        {menuOpen ? "✖" : "☰"}
+      </button>
 
-      {/* Navigation Links */}
+      {/* Mobile Links */}
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
         <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
         <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>

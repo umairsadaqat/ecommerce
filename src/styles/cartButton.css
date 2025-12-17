@@ -1,0 +1,75 @@
+.cart-button {
+  display: none; /* hidden on desktop */
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-button img {
+  width: 40px;
+  height: 40px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  left: 90px; /* next to cart */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+.whatsapp-button img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Show on mobile only */
+@media (max-width: 768px) {
+  .cart-button, .whatsapp-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cart-button img, .whatsapp-button img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cart-badge {
+    top: -4px;
+    right: -4px;
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+
+  /* Adjust spacing between buttons on small screens */
+  .whatsapp-button {
+    left: 100px; /* move closer to cart */
+  }
+}

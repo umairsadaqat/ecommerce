@@ -1,25 +1,42 @@
-import React from "react";
-import "../styles/admin-dashboard.css";
-
-export default function Sidebar({ activeSection, setActiveSection, onLogout }) {
+export default function Sidebar({
+  activeSection,
+  setActiveSection,
+  onLogout,
+  menuOpen,
+  setMenuOpen
+}) {
   return (
-    <aside className="sidebar">
-      <h2>Admin Panel</h2>
+    <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
+
+      
+
+      <h2>Admin</h2>
+
       <ul>
         <li
           className={activeSection === "orders" ? "active" : ""}
-          onClick={() => setActiveSection("orders")}
+          onClick={() => {
+            setActiveSection("orders");
+            setMenuOpen(false);
+          }}
         >
           Orders
         </li>
+
         <li
           className={activeSection === "products" ? "active" : ""}
-          onClick={() => setActiveSection("products")}
+          onClick={() => {
+            setActiveSection("products");
+            setMenuOpen(false);
+          }}
         >
           Products
         </li>
-        <li onClick={onLogout}>Logout</li>
       </ul>
+
+      <button className="logout-btn" onClick={onLogout}>
+        Logout
+      </button>
     </aside>
   );
 }

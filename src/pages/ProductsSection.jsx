@@ -34,16 +34,18 @@ export default function ProductsSection({
   return (
     <section>
       <h1>Manage Products</h1>
-
       <AddProductForm onAdd={addProduct} />
 
       <div className="product-list1">
         {products.map((product, index) => (
           <div key={index} className="product-card1">
 
-            {product.image && (
-              <img src={product.image} alt={product.name} className="product-image1" />
-            )}
+            {/* Image container ensures same size for all images */}
+            <div className="product-image-container">
+              {product.image && (
+                <img src={product.image} alt={product.name} className="product-image1" />
+              )}
+            </div>
 
             {editIndex === index ? (
               <>
@@ -53,6 +55,7 @@ export default function ProductsSection({
                   onChange={(e) =>
                     setEditData({ ...editData, name: e.target.value })
                   }
+                  placeholder="Product Name"
                 />
 
                 <input
@@ -61,18 +64,13 @@ export default function ProductsSection({
                   onChange={(e) =>
                     setEditData({ ...editData, price: e.target.value })
                   }
+                  placeholder="Price"
                 />
 
                 <div className="action-row">
-                  <button className="save-btn" onClick={saveEdit}>
-                    Save
-                  </button>
-
-                  <button className="cancel-btn" onClick={() => setEditIndex(null)}>
-                    Cancel
-                  </button>
+                  <button className="save-btn" onClick={saveEdit}>Save</button>
+                  <button className="cancel-btn" onClick={() => setEditIndex(null)}>Cancel</button>
                 </div>
-
               </>
             ) : (
               <>
@@ -80,18 +78,9 @@ export default function ProductsSection({
                 <p>Price: {product.price} PKR</p>
 
                 <div className="action-row">
-                  <button className="edit-btn" onClick={() => startEdit(index)}>
-                    Edit
-                  </button>
-
-                  <button
-                    className="delete-btn"
-                    onClick={() => deleteProduct(index)}
-                  >
-                    Delete
-                  </button>
+                  <button className="edit-btn" onClick={() => startEdit(index)}>Edit</button>
+                  <button className="delete-btn" onClick={() => deleteProduct(index)}>Delete</button>
                 </div>
-
               </>
             )}
           </div>

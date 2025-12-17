@@ -147,27 +147,23 @@
 ====================== */
 .add-product-form {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
 
 .add-product-form input[type="text"],
-.add-product-form input[type="number"] {
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  flex: 1;
-}
-
+.add-product-form input[type="number"],
 .add-product-form input[type="file"] {
-  border: 1px solid #ccc;
+  padding: 10px 12px;
   border-radius: 6px;
-  padding: 6px;
+  border: 1px solid #ccc;
+  flex: 1 1 200px;
+  box-sizing: border-box;
 }
 
 .add-product-form button {
-  padding: 8px 15px;
+  padding: 10px 20px;
   background: #d35400;
   color: white;
   border: none;
@@ -186,14 +182,13 @@
 .product-list1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px; /* smaller gap works better */
-  margin-top: 70px;
-  padding: 0 10px; /* optional, prevent touching edges */
+  gap: 15px;
+  margin-top: 20px;
+  padding: 0 10px;
 }
 
-
 .product-card1 {
-  background: rgb(252, 251, 251);
+  background: #fcfbfb;
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -201,27 +196,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* keep content aligned top */
+  justify-content: flex-start;
+ 
 }
 
-.product-card1 .product-image {
- width: 100%;          /* fit card width */
-  height: 150px;        /* uniform image height */
-  object-fit: cover;    /* crop to fill card nicely */
+/* Image container ensures same size */
+.product-image-container {
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
   border-radius: 8px;
   margin-bottom: 12px;
 }
 
-
-.product-card1 p {
-  margin: 6px 0; /* spacing between name and price */
+.product-card1 .product-image1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
+/* Text spacing */
+.product-card1 p {
+  margin: 6px 0;
+}
+
 /* ======================
    Edit Inputs Style
 ====================== */
 .product-card1 input[type="text"],
 .product-card1 input[type="number"] {
-  width: 100%; /* full width inside product card */
+  width: 100%;
   padding: 10px 12px;
   margin-bottom: 10px;
   border-radius: 8px;
@@ -242,18 +246,18 @@
 
 /* Edit action row */
 .product-card1 .action-row.editing {
-  justify-content: center; /* center Save and Cancel buttons */
+  justify-content: center;
   margin-top: 5px;
 }
-
 
 /* ======================
    FORCE BUTTON COLORS
 ====================== */
 .product-card1 .action-row {
   display: flex;
-  gap: 10px; /* <-- THIS WORKS */
-  margin-top: 10px;
+  gap: 10px;
+  margin-top: 10px; /* buttons at bottom */
+  justify-content: center;
 }
 
 .product-card1 .action-row button {
@@ -263,7 +267,6 @@
   cursor: pointer;
   font-weight: 600;
   gap: 10px;
-  
 }
 
 /* EDIT - GREEN */
@@ -304,32 +307,64 @@
   background-color: #ff4d4d !important;
 }
 
+/* ======================
+   MENU TOGGLE BUTTON
+====================== */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: 44px;
+  height: 44px;
+  font-size: 26px;
+  background: #d35400;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1300;
+}
 
 /* ======================
-   Responsive
+   MOBILE SIDEBAR
 ====================== */
-@media (max-width: 1024px) {
-  .admin-dashboard-container {
-    flex-direction: column;
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
   }
 
   .sidebar {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left: -260px;
+    height: 100vh;
+    width: 220px;
+    transition: 0.3s ease;
+    z-index: 1200;
+  }
+
+  .sidebar.open {
+    left: 0;
   }
 
   .admin-content {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .add-product-form {
-    flex-direction: column;
+    padding-top: 60px;
   }
 
-  .product-list {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  /* Product card smaller images on mobile */
+  .product-card1 {
+    height: 280px;
+  }
+
+  .product-image-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .add-product-form input[type="text"],
+  .add-product-form input[type="number"],
+  .add-product-form input[type="file"] {
+    flex: 1 1 100%;
   }
 }

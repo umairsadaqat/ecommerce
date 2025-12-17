@@ -5,6 +5,9 @@ import About from "./pages/About";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import Footer from "./pages/Footer";
+import CartButton from "./pages/CartButton";
+import WhatsAppButton from "./pages/WhatsAppButton";
+
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 
@@ -97,6 +100,10 @@ export default function App() {
       <Products onAddToCart={handleAddToCart} />
       <Contact />
       <Footer />
+            {/* Mobile Cart Button */}
+      <CartButton cartCount={cartItems.length} onClick={() => setShowCart(true)} />
+          <WhatsAppButton /> {/* ✅ This will appear on all pages */}
+
 
       {showCart && (
         <Cart
