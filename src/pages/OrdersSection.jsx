@@ -1,4 +1,4 @@
-export default function OrdersSection({ orders, updateStatus }) {
+export default function OrdersSection({ orders, updateStatus, deleteOrder }) {
   return (
     <section>
       <h1>Customer Orders</h1>
@@ -8,7 +8,11 @@ export default function OrdersSection({ orders, updateStatus }) {
         <div className="order-list">
           {orders.map((order, index) => (
             <div key={index} className="order-card">
-              <h3>Order #{index + 1}</h3>
+              <div className="order-card-header">
+                <h3>Order #{index + 1}</h3>
+                <span className="order-date">{order.date || new Date().toLocaleString()}</span>
+              </div>
+
               <p><strong>Name:</strong> {order.delivery.name}</p>
               <p><strong>Address:</strong> {order.delivery.address}, {order.delivery.city}</p>
               <p><strong>Phone:</strong> {order.delivery.phone}</p>
@@ -31,6 +35,13 @@ export default function OrdersSection({ orders, updateStatus }) {
                 )}
                 {order.status !== "Delivered" && (
                   <button onClick={() => updateStatus(index, "Delivered")}>Mark as Delivered</button>
+                )}
+
+                {/* Show Delete button only if Delivered */}
+                {order.status === "Delivered" && (
+                  <button onClick={() => deleteOrder(index)} className="delete-btn">
+                    Delete
+                  </button>
                 )}
               </div>
             </div>

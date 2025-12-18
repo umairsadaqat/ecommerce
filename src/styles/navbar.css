@@ -1,3 +1,6 @@
+/* =========================
+   NAVBAR CONTAINER
+========================= */
 .navbar {
   width: 100%;
   height: 70px;
@@ -8,10 +11,13 @@
   justify-content: space-between;
   padding: 0 20px;
   box-sizing: border-box;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
   position: relative;
 }
 
+/* =========================
+   LEFT LOGO
+========================= */
 .navbar-left {
   display: flex;
   align-items: center;
@@ -29,7 +35,9 @@
   font-weight: bold;
 }
 
-/* Navigation Links */
+/* =========================
+   NAV LINKS
+========================= */
 .nav-links {
   list-style: none;
   display: flex;
@@ -37,27 +45,31 @@
   align-items: center;
 }
 
-.nav-links li a{
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
+/* IMPORTANT: style BUTTONS (not <a>) */
+.nav-links li button {
   background: none;
   border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
   cursor: pointer;
   transition: 0.3s;
+  padding: 6px 10px;
 }
 
-.nav-links li a:hover {
+.nav-links li button:hover {
   color: #ffd4d8;
 }
 
-/* Cart */
+/* =========================
+   CART
+========================= */
 .cart-link {
   position: relative;
   border: none;
   background: none;
   cursor: pointer;
+  padding: 6px;
 }
 
 .cart-icon {
@@ -67,8 +79,8 @@
 
 .cart-badge {
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: -6px;
+  right: -6px;
   background: red;
   color: white;
   border-radius: 50%;
@@ -77,66 +89,72 @@
   font-weight: bold;
 }
 
-/* Admin Button */
+/* =========================
+   ADMIN BUTTON
+========================= */
 .admin-btn {
-  background-color: #0e0b07;
+  background-color: #0e0b07 !important;
   color: #fff;
   border: none;
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 6px 12px;
   transition: 0.3s;
 }
 
 .admin-btn:hover {
-  background-color: #e67e22;
+  background-color: #e67e22 !important;
 }
-/* Hamburger Toggle (Mobile) */
+
+/* =========================
+   HAMBURGER MENU
+========================= */
 .menu-toggle1 {
-  display: none;          /* hidden on desktop */
+  display: none; /* hidden on desktop */
   font-size: 28px;
   cursor: pointer;
   background: none;
   border: none;
   color: white;
-
-  /* Align right inside navbar */
-  margin-left: auto;      /* pushes it to the far right */
-    position: relative;
+  margin-left: auto;
 }
 
-/* Show toggle only on mobile */
+/* =========================
+   MOBILE STYLES
+========================= */
 @media (max-width: 768px) {
   .menu-toggle1 {
     display: block;
-    position: static;
-    
   }
-
+  
   .nav-links {
-    position: absolute;    /* overlays content below navbar */
-    top: 52px;             /* below navbar */
+    position: absolute;
+    top: 52px;
     right: 0;
-    width: 120px;
+    width: 100px;
     background: rgb(245, 123, 75);
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
     display: none;
-    gap: 10px;
+    gap: 8px;
     z-index: 1000;
-    border-left: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
 
   .nav-links.open {
     display: flex;
   }
 
-  .nav-links li a,
+  .nav-links li {
+    width: 100%;
+  }
+
   .nav-links li button {
     width: 100%;
-    text-align: left;
-    padding: 8px 12px;
+    text-align: center;
+    padding: 8px 1px;
   }
+ 
 }

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -32,86 +35,104 @@ export default function App() {
   // ADD TO CART
   // ======================
   const handleAddToCart = (product) => {
-    const existingIndex = cartItems.findIndex((item) => item.id === product.id);
+    const index = cartItems.findIndex(item => item.id === product.id);
+    let newCart = [...cartItems];
 
-    if (existingIndex >= 0) {
-      // Product exists, increase quantity
-      const newCart = [...cartItems];
-      newCart[existingIndex].quantity += 1;
-      setCartItems(newCart);
+    if (index >= 0) {
+      newCart[index].quantity += 1;
     } else {
-      // Add new product
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+      newCart.push({ ...product, quantity: 1 });
     }
 
-    alert(`${product.name} added to cart!`);
+    setCartItems(newCart);
+    toast.success(`${product.name} added to cart`);
   };
 
   // ======================
   // UPDATE CART QUANTITY
   // ======================
   const updateQuantity = (productId, delta) => {
-    const newCart = cartItems
-      .map(item =>
-        item.id === productId ? { ...item, quantity: item.quantity + delta } : item
-      )
-      .filter(item => item.quantity > 0); // remove if quantity <= 0
-    setCartItems(newCart);
+    setCartItems(
+      cartItems
+        .map(item =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity + delta }
+            : item
+        )
+        .filter(item => item.quantity > 0)
+    );
   };
 
-  // ======================
-  // CALCULATE TOTAL QUANTITY
-  // ======================
-  const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const totalCartCount = cartItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
   // ======================
-  // ADMIN LOGIN CLICKED
-  // ======================
-  const handleAdminClick = () => {
-    setShowAdminLogin(true);
-  };
-
-  // ======================
-  // RENDER
+  // ADMIN LOGIN VIEW
   // ======================
   if (showAdminLogin && !isAdminLoggedIn) {
     return (
-      <Admin
-        onLogin={() => {
-          setIsAdminLoggedIn(true);
-          setShowAdminLogin(false);
-        }}
-      />
+      <>
+        <ToastContainer />
+        <Admin
+          onLogin={() => {
+            setIsAdminLoggedIn(true);
+            setShowAdminLogin(false);
+          }}
+        />
+      </>
     );
   }
 
+  // ======================
+  // ADMIN DASHBOARD
+  // ======================
   if (isAdminLoggedIn) {
-    return <AdminDashboard onLogout={() => setIsAdminLoggedIn(false)} />;
+    return (
+      <>
+        <ToastContainer />
+        <AdminDashboard
+          onLogout={() => {
+            setIsAdminLoggedIn(false);
+            toast.info("Admin Logged Out");
+          }}
+        />
+      </>
+    );
   }
 
+  // ======================
+  // MAIN WEBSITE
+  // ======================
   return (
     <>
+      <ToastContainer position="top-right" autoClose={3000} />
+
       <Navbar
         cartCount={totalCartCount}
         onCartClick={() => setShowCart(true)}
-        onAdminClick={handleAdminClick}
+        onAdminClick={() => setShowAdminLogin(true)}
       />
 
+      {/* ALL SECTIONS ALWAYS RENDERED */}
       <Home />
       <About />
       <Products onAddToCart={handleAddToCart} />
       <Contact />
       <Footer />
 
-      {/* Mobile Cart Button */}
-      <CartButton cartCount={totalCartCount} onClick={() => setShowCart(true)} />
-      <WhatsAppButton /> {/* ✅ Show on all pages */}
+      <CartButton
+        cartCount={totalCartCount}
+        onClick={() => setShowCart(true)}
+      />
+      <WhatsAppButton />
 
       {showCart && (
         <Cart
           cartItems={cartItems}
-          onClose={() => setShowCart(false)}
           updateQuantity={updateQuantity}
+          onClose={() => setShowCart(false)}
           onCheckout={() => {
             setShowCart(false);
             setShowCheckout(true);
@@ -120,7 +141,11 @@ export default function App() {
       )}
 
       {showCheckout && (
-        <Checkout cartItems={cartItems} onCancel={() => setShowCheckout(false)} />
+         <Checkout
+    cartItems={cartItems}
+    onCancel={() => setShowCheckout(false)}
+    clearCart={() => setCartItems([])} // <-- clear cart after order
+  />
       )}
     </>
   );

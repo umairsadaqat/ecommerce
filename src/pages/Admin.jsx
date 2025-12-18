@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import "../styles/admin.css";
 
 export default function Admin({ onLogin }) {
@@ -7,11 +8,12 @@ export default function Admin({ onLogin }) {
 
   const loginAdmin = (e) => {
     e.preventDefault();
+
     if (username === "admin" && password === "1234") {
-      alert("Admin Login Successful!");
-      onLogin(); 
+      toast.success("Admin Login Successful!");
+      onLogin();
     } else {
-      alert("Invalid Credentials");
+      toast.error("Invalid Credentials");
     }
   };
 
@@ -26,6 +28,7 @@ export default function Admin({ onLogin }) {
           onChange={(e) => setUsername(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Password"
@@ -33,7 +36,10 @@ export default function Admin({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit" className="admin-login-btn">Login</button>
+
+        <button type="submit" className="admin-login-btn">
+          Login
+        </button>
       </form>
     </section>
   );

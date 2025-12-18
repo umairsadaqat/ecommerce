@@ -150,10 +150,15 @@
     max-width: 50%;
     height: auto;
     margin: 20px;
+    text-align: center;
   }
 
   .about-container {
-    padding: 5px 2px;
-    gap: 20px;
+    padding: 1px 1px;
+
+    
+    text-align: center;
+ 
+  
   }
 }

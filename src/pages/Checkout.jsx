@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/checkout.css";
 
 const stripePromise = loadStripe("pk_test_your_publishable_key_here");
 
-function CheckoutForm({ cartItems, onCancel }) {
+function CheckoutForm({ cartItems, onCancel, clearCart }) {
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const stripe = useStripe();
   const elements = useElements();
@@ -17,11 +19,10 @@ function CheckoutForm({ cartItems, onCancel }) {
     email: "",
   });
   const [paymentMethod, setPaymentMethod] = useState("card"); // "card" or "cod"
-  const [message, setMessage] = useState("");
 
   const handleChange = (e) => setDelivery({ ...delivery, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const orderData = {
@@ -30,26 +31,32 @@ function CheckoutForm({ cartItems, onCancel }) {
       total: subtotal,
       date: new Date().toLocaleString(),
       paymentMethod,
-      status: "Pending"
+      status: "Pending",
     };
 
-    // save to localStorage
+    // save order to localStorage
     const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
     existingOrders.push(orderData);
     localStorage.setItem("orders", JSON.stringify(existingOrders));
 
-    if (paymentMethod === "card") {
-      // Here you would integrate Stripe payment
-      alert("Card payment successful! Order Placed.");
-    } else {
-      alert("Order Placed! Please pay on delivery.");
-    }
-
-    setMessage(`Order placed successfully using ${paymentMethod === "card" ? "Card" : "Cash on Delivery"}!`);
+    // toast notification
+    toast.success(
+      paymentMethod === "card"
+        ? `Card payment successful! Order placed for ${subtotal} PKR.`
+        : "Order placed! Please pay on delivery (COD).",
+      {
+        autoClose: 3000,
+        onClose: () => {
+          onCancel();   // close modal
+          clearCart();  // empty cart after checkout
+        },
+      }
+    );
   };
 
   return (
     <div className="checkout-overlay">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="checkout-modal">
         <div className="checkout-header">
           <h1>Checkout</h1>
@@ -93,18 +100,16 @@ function CheckoutForm({ cartItems, onCancel }) {
           <button type="submit" className="place-order-btn">
             {paymentMethod === "card" ? `Pay ${subtotal} PKR` : "Place Order (COD)"}
           </button>
-
-          {message && <p className="payment-message">{message}</p>}
         </form>
       </div>
     </div>
   );
 }
 
-export default function Checkout({ cartItems, onCancel }) {
+export default function Checkout({ cartItems, onCancel, clearCart }) {
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm cartItems={cartItems} onCancel={onCancel} />
+      <CheckoutForm cartItems={cartItems} onCancel={onCancel} clearCart={clearCart} />
     </Elements>
   );
 }

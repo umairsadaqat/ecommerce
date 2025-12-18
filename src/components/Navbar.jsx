@@ -6,7 +6,10 @@ import cartIcon from "../assets/cart.png";
 export default function Navbar({ cartCount, onCartClick, onAdminClick }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
 
   return (
     <nav className="navbar">
@@ -15,24 +18,28 @@ export default function Navbar({ cartCount, onCartClick, onAdminClick }) {
         <span className="logo-text">Tapal Chai</span>
       </div>
 
-      {/* Hamburger Toggle */}
-      <button className="menu-toggle1" onClick={toggleMenu}>
+      <button className="menu-toggle1" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? "✖" : "☰"}
       </button>
 
-      {/* Mobile Links */}
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-        <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
-        <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>
-        <li><a href="#products" onClick={() => setMenuOpen(false)}>Products</a></li>
-        <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+        <li><button onClick={() => scrollTo("home")}>Home</button></li>
+        <li><button onClick={() => scrollTo("about")}>About</button></li>
+        <li><button onClick={() => scrollTo("products")}>Products</button></li>
+        <li><button onClick={() => scrollTo("contact")}>Contact</button></li>
+
         <li>
-          <button className="admin-btn" onClick={() => { onAdminClick(); setMenuOpen(false); }}>Admin</button>
+          <button className="admin-btn" onClick={onAdminClick}>
+            Admin
+          </button>
         </li>
+
         <li>
           <button className="cart-link" onClick={onCartClick}>
             <img src={cartIcon} alt="Cart" className="cart-icon" />
-            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+            {cartCount > 0 && (
+              <span className="cart-badge">{cartCount}</span>
+            )}
           </button>
         </li>
       </ul>
